@@ -1,0 +1,73 @@
+﻿<section id="register">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Register</h1>
+        <form #registerForm="ngForm">
+          <div class="form-group">
+            <label for="firstName">firstName</label>
+            <input  [(ngModel)]="formData.firstName" name="firstName" 
+                    #firstName='ngModel'
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    required>
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                      class="alert alert-danger">
+                <div *ngIf="firstName.errors.required">
+                  FirstName is required.
+                </div>  
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">lastName</label>
+            <input  [(ngModel)]="formData.lastName" name="lastName" 
+                    #lastName="ngModel"
+                    type="text"
+                    class="form-control"
+                    id="lastName">
+          </div>
+
+          <div class="form-group">
+            <label for="PhoneNumber">PhoneNumber</label>
+            <input  [(ngModel)]="formData.PhoneNumber" name="PhoneNumber" type="text"
+                   class="form-control"
+                   id="PhoneNumber"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">email</label>
+            <input [(ngModel)]="formData.email" name="email" 
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   required>
+              <!-- <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                  email is required.
+                </div>  
+              </div> -->
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input  [(ngModel)]="formData.password" name="password" 
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    required>
+          </div>
+          <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+            <p style="color: white">Please Wait. </p>  
+            </ngx-spinner>    
+
+          <button [disabled]="!registerForm.form.valid" (click)="register()" type="submit" class="btn btn-bwm">
+            Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
