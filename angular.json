@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./styles.css",
+              "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "../node_modules/tether/dist/css/tether.min.css",         
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css"
+              
             ],
-            "scripts": []
+            "scripts": [ "node_modules/intl-tel-input/build/js/intlTelInput.min.js"]
           },
           "configurations": {
             "production": {
@@ -88,6 +93,9 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.css"
             ],
             "scripts": []

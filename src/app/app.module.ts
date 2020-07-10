@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
-import { NgxSpinnerModule } from "ngx-spinner";  
+import { NgxSpinnerModule } from "ngx-spinner";
+import {Ng2TelInputModule} from 'ng2-tel-input';
 import "@angular/compiler"
 
 
@@ -13,9 +14,9 @@ import "@angular/compiler"
 import { AppComponent } from './app.component'
 import { RegisterComponent } from './user/register/register.component'
 import { VerifyComponent } from './user/verify/verify.component'
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.service';                               
 import { UserComponent } from './user/user.component'
-// import { AuthGuardService } from './auth-guard.service'
+
 
 const routes: Routes = [
   {path: 'verify',component: VerifyComponent},
@@ -39,10 +40,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    Ng2TelInputModule
   ],
   providers: [AuthService,
-    // AuthGuardService
+    
   ],
   bootstrap: [AppComponent]
 })
