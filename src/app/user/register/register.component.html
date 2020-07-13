@@ -29,18 +29,35 @@
           </div>
 
           <div class="form-group">
-            <label for="phoneNumber">PhoneNumber</label>
-            <input
-            type="text"ng2TelInput             
-            formControlName="phoneNumber" 
-            (hasError)="hasError($event)" 
-             />
-          <div
-            *ngIf="
-            !registerForm.get('phoneNumber').valid &&
-            registerForm.get('phoneNumber').touched">
-          This is an <strong>invalid</strong> phone number.
-          </div>
+            <label for="phone">PhoneNumber</label>
+            <ngx-intl-tel-input
+                [inputId]="'adsasd'"
+                [cssClass]="'custom'" 
+                [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="false" 
+                [enablePlaceholder]="true" 
+                [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                [selectFirstCountry]="false" 
+                [selectedCountryISO]="CountryISO.India"
+                [maxLength]="15" 
+                [tooltipField]="TooltipLabel.Name" 
+                [phoneValidation]="true" 
+                [separateDialCode]="separateDialCode"
+                name="phone" formControlName="phone">
+              <div *ngIf="isInValidForm('phone')"
+                  class="alert alert-danger">
+    
+                  <div *ngIf="isRequired('phone')">
+                    phoneNumber is required.
+                  </div>
+                  <div *ngIf="registerForm.controls['phone'].errors.pattern">
+                    Must be valid email format!
+                  </div>
+
+                 
+              </div>
+            </ngx-intl-tel-input>
            
           </div>
 
@@ -60,6 +77,10 @@
                     <div *ngIf="registerForm.controls['email'].errors.pattern">
                       Must be valid email format!
                     </div>
+
+                    <div *ngIf="registerForm.get('email').hasError('isEmailUnique')">
+                      This email has been registered already
+                    </div>
                 </div>
           </div>
 
@@ -76,24 +97,12 @@
                     <div *ngIf="isRequired('password')">
                       password is required.
                     </div>
+                    <div *ngIf="registerForm.controls['password'].errors.minlength">
+                      Password must be at least 7 characters
+                    </div>
                 </div>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="referralCode">referral Code</label>
-            <input  formControlName="referralCode" name="referralCode" 
-                    type="text"
-                    class="form-control"
-                    id="referralCode"
-                    required>
-                <div *ngIf="isInValidForm('referralCode')"
-                    class="alert alert-danger">
-      
-                    <div *ngIf="isRequired('referralCode')">
-                      referralCode is required.
-                    </div>
-                </div>
-          </div> -->
 
           <button [disabled]="!registerForm.valid" type="submit" class="btn btn-bwm" (click)="register()">Submit</button>
             
@@ -103,7 +112,9 @@
   </div>
 </section>
 
-
+<!-- <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button> -->
 
 <!-- ng2TelInput 
             [ng2TelInputOptions]="{initialCountry: 'us'}"
